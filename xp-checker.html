@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Vue JS Simple App | Experience Checker</title>
+
+	<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+	<style type="text/css">
+		[v-cloak]{
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<div id="app" class="container">
+		<div class="row">
+			<div class="col-xs-12 text-center">
+				<h1>You're a <b v-cloak>{{ level }}</b></h1>
+			</div>
+		</div>
+		<hr>
+		<div class="row">
+			<div class="col-xs-12 text-center">
+				<h3 v-cloak>Current XP: {{ xp }}</h3>
+			</div>
+			<div class="col-md-6 col-xs-12 col-md-offset-3">
+				<div class="row">
+					<div class="col-md-6 col-xs-12">
+						<button @click="addXP" class="btn btn-success btn-block">Add XP</button>
+					</div>
+					<div class="col-md-6 col-xs-12">
+						<button @click="decreaseXP" class="btn btn-success btn-block">Decrease XP</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="assets/js/vue.js"></script>
+	<script>
+		var app = new Vue({
+			el: '#app',
+			data: {
+				xp: 10
+			},
+			methods: {
+				addXP: function() {
+					this.xp += 10
+				},
+				decreaseXP: function() {
+					if(this.xp > 0){
+						this.xp -= 10
+					}else{
+						alert('XP telah mencapai batas!')
+					}
+				}
+			},
+			computed: {
+				level: function() {
+					if(this.xp >= 200){
+						return "Mastah"
+					}else if(this.xp >= 100){
+						return "Intermediate"
+					}else if (this.xp >= 0){
+						return "Beginner"
+					}else {
+						return "Something were wrong!"
+					}
+				}
+			}
+		})
+	</script>
+</body>
+</html>

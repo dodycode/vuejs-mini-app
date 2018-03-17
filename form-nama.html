@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Vue JS Simple App | Realtime Name Form</title>
+
+	<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+	<style type="text/css">
+		[v-cloak]{
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<div id="app" class="container">
+		<div class="row">
+			<div class="col-xs-12 text-center">
+				<h1>Hello {{ fullName }}</h1>
+				<ul class="text-left">
+					<li v-cloak>First Name: {{ firstName }} </li>
+					<li v-cloak>Last Name: {{ lastName }} </li>
+				</ul>
+			</div>
+		</div>
+		<hr>
+		<div class="row">
+			<div class="col-md-6 col-xs-12">
+				<div class="form-group">
+					<label>First Name:</label>
+					<input type="text" v-model="firstName" class="form-control">
+				</div>
+			</div>
+			<div class="col-md-6 col-xs-12">
+				<div class="form-group">
+					<label>Last Name:</label>
+					<input type="text" v-model="lastName" class="form-control">
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="assets/js/vue.js"></script>
+	<script>
+		var app = new Vue({
+			el: '#app',
+			data: {
+				firstName: '',
+				lastName: ''
+			},
+			computed: {
+				fullName: function() {
+					return this.firstName + ' ' + this.lastName
+				}
+			}
+		})
+	</script>
+</body>
+</html>
